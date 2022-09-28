@@ -9,13 +9,13 @@ export class RequestService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getForeignExchange(coin: string){
-    return this.httpClient.get(`https://www.frankfurter.app/latest?from=${coin}`).pipe(
+  getForeignExchange(coin: string, num: number){
+    return this.httpClient.get(`https://www.frankfurter.app/latest?from=${coin}&&amount=${num}`).pipe(
       map((resp: any) => {
-        console.log(coin);
         return {
           date: resp.date,
-          MXN: resp.rates.MXN
+          amount: resp.amount,
+          rates: resp.rates
         }
       })
     );

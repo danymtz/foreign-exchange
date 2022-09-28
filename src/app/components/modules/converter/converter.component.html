@@ -1,0 +1,22 @@
+<h1>Convertidor de divisas</h1>
+
+<div>
+    <form [formGroup]="formLogin" (submit)="getData()" class="container">
+        <label>Dólar (USA): </label>
+        <label *ngIf="formLogin.get('money')?.errors && formLogin.get('money')?.touched" style="color: red;">Se requieren digitos</label>
+        <input type="text" id="money" placeholder="Ingrese el monto" formControlName="money"> <br><br>      
+        <button role="submit" type="submit" (click)="getData()" id="btn" [disabled]="formLogin.invalid">Convertir</button> 
+    </form>
+
+    <div class="allCoins">
+        <div *ngIf="showResults" >
+            <p>Última actuzalizacion: {{dateCoin}}</p><br><br>
+    
+            <div *ngFor="let coins of availableCoins" class="spaceCoins">
+                <div><p>{{coins[0] | format}}{{coins[1]}}</p></div>
+                <div><button>Quitar moneda</button></div>          
+            </div>
+        </div>
+    </div>
+    
+</div>
